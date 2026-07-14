@@ -116,12 +116,3 @@ These are deliberate scope cuts, not bugs:
    and would let the monitor/scoreboard patterns here (queue-based
    pairing, model-based checking) be extended to handle out-of-order
    completion.
-
-## For a resume / portfolio
-
-If you push this to GitHub: keep this README, add a waveform screenshot
-showing a passing run (EPWave, zoomed to show a write/read pair), and
-consider a short note in the commit history or README about the
-reset-timing bug above - a concrete, correctly-diagnosed bug with a
-two-part fix (testbench + DUT) is a strong, specific thing to point to
-in an interview, more so than the project simply "working."
