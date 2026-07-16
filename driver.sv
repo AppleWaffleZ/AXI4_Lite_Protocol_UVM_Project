@@ -1,9 +1,6 @@
-// ============================================================
-// driver.sv
-// Depends on: if.sv, sequence_item.sv
-// Must compile BEFORE: agent.sv
-// ============================================================
-
+// ------------------------------------------------------------
+// Driver: converts sequence items into pin wiggles on the interface
+// ------------------------------------------------------------
 class axi4lite_driver extends uvm_driver #(axi4lite_seq_item);
     `uvm_component_utils(axi4lite_driver)
 
@@ -22,13 +19,8 @@ class axi4lite_driver extends uvm_driver #(axi4lite_seq_item);
     task run_phase(uvm_phase phase);
         vif.AWVALID <= 0; vif.WVALID <= 0; vif.BREADY <= 1;
         vif.ARVALID <= 0; vif.RREADY <= 1;
-
-        // Wait for reset to deassert before driving anything - otherwise
-        // combinational READY signals can glitch high mid-reset and the
-        // driver will think a handshake completed when it didn't.
-        @(posedge vif.ARESETn);
-        @(posedge vif.ACLK);
-
+      	@(posedge vif.ARESETn);
+		@(posedge vif.ACLK);
         forever begin
             axi4lite_seq_item req;
             seq_item_port.get_next_item(req);
